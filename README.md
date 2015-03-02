@@ -37,5 +37,5 @@ Eindopdracht Mobile Development 1
 | De applicatie heeft een Splashscreen | :heavy_check_mark: | :x: |
 | Het is mogelijk om navigatie te starten naar een restaurant/eetgelegenheid | :heavy_check_mark: | :x: |
 | **Functioneel** |
-| Het is mogelijk een overziccht te zien van restaurants bij jou in de buurt. | :heavy_check_mark: | :x: |
+| Het is mogelijk een overzicht te zien van restaurants bij jou in de buurt. | :heavy_check_mark: | :x: |
 | Het is mogelijk om meer details te zien van een restaurant zoals bijvoorbeeld prijs, kwaliteit verhouding | :heavy_check_mark: | :x: |
