@@ -2,7 +2,7 @@
 Eindopdracht Mobile Development 1
 
 | Requirement | Planned | Implemented |
-| ----------- |:-------:| -----------:| 
+| ----------- |:-------:|:-----------:| 
 | **Basis** |
 | De basis concepten van hybride apps t.o.v native apps uitleggen en toepassen | :heavy_check_mark: | :x: | 
 | De app draai kan draaien op Android en IOS (leentoestel geprobeerd). De app is dus volledig hybride. | :heavy_check_mark: | :x: |
