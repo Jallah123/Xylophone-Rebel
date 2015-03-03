@@ -1,6 +1,15 @@
 # Xylophone-Rebel
 Eindopdracht Mobile Development 1
 
+## Omschrijving
+Restaurantsite http://www.eet.nu is een website waarbij je kan zoeken naar je favoriete restaurants. Hier kan je aangeven wat je lekker vindt en waar je zou willen eten, de website geeft je dan suggesties op basis van je voorkeuren. Je kan natuurlijk nog een hoop extra filters opgeveven bij het zoeken, denk hierbij bijvoorbeeld de mogelijkheid om online te bestellen, de gemiddelde waardering of dieetvoorkeuren.
+
+Eet.nu is ook een sociale website, mensen laten hier weten wat hun ervaring met het restaurant is en hoe ze deze waarderen. Deze waardering geven ze aan in verschillende categorieën en lichten deze toe met een stukje commentaar.
+
+De website van eet.nu maakt gebruik van zijn eigen API die wij ook kunnen gebruiken. De opdracht is dan ook om deze API aan te roepen vanuit een mobiele app zodat waar en wanneer je maar wilt het restaurant kan vinden waar jij graag wilt eten!
+In deze app moet het natuurlijk mogelijk zijn om restaurants te zoeken naar jouw voorkeur, maar natuurlijk ook naar prijs/kwaliteit-verhouding en de afstand tot de locatie waar je je op dat moment bevindt.
+
+## Requirements
 | Requirement | Planned | Implemented |
 | ----------- |:-------:|:-----------:| 
 | **Basis** |
