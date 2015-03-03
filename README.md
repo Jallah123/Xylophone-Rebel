@@ -1,6 +1,8 @@
 # Xylophone-Rebel
 Eindopdracht Mobile Development 1
 
+eet.nu api: https://docs.eet.nu/
+
 ## Omschrijving
 Restaurantsite http://www.eet.nu is een website waarbij je kan zoeken naar je favoriete restaurants. Hier kan je aangeven wat je lekker vindt en waar je zou willen eten, de website geeft je dan suggesties op basis van je voorkeuren. Je kan natuurlijk nog een hoop extra filters opgeveven bij het zoeken, denk hierbij bijvoorbeeld de mogelijkheid om online te bestellen, de gemiddelde waardering of dieetvoorkeuren.
 
