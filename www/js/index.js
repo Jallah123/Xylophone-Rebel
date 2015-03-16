@@ -21,6 +21,7 @@
     // Application Constructor
     initialize: function() {
         this.bindEvents();
+        this.getCurrentLocation();
     },
     
     // Bind Event Listeners
@@ -45,7 +46,9 @@
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+        alert("device ready");
         app.receivedEvent('deviceready');
+        eetNu.getLocalVenues();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

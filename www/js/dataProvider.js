@@ -13,7 +13,8 @@ var eetNu = {
 		})
 	},
 	getLocalVenues: function(){
-		app.getCurrentLocation();
+		var location = window.localStorage.getItem("location");
+		alert(location);
 		//wait for window.localStorage.setItem("location", JSON.stringify(position)); do something with item
 	}
 };
