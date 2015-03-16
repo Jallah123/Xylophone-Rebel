@@ -11,6 +11,9 @@ var eetNu = {
 		}).fail(function () {
 			alert('Request failed');
 		})
+	},
+	getLocalVenues: function(){
+		app.getCurrentLocation();
+		//wait for window.localStorage.setItem("location", JSON.stringify(position)); do something with item
 	}
-
 };
