@@ -17,12 +17,11 @@
  * under the License.
  */
 
- var app = {
+var app = {
     // Application Constructor
     initialize: function() {
         alert('initialize');
         this.bindEvents();
-        this.getCurrentLocation();
     },
     
     // Bind Event Listeners
@@ -44,14 +43,14 @@
         alert("location is set");
     },
     getCurrentLocation: function() {
-        navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError);
+        navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError, {timeout: 15000});
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        alert("device ready");
-        eetNu.getLocalVenues();
+        alert("Device ready");
+        app.getCurrentLocation();
     }
 };
