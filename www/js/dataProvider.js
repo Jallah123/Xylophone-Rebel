@@ -14,7 +14,6 @@ var eetNu = {
 	},
 	getLocalVenues: function(){
 		var location = window.localStorage.getItem("location");
-		alert(location);
-		//wait for window.localStorage.setItem("location", JSON.stringify(position)); do something with item
+		var result = this.execRequest("venues?lat=" + location.lat + "?long" + location.long);
 	}
 };

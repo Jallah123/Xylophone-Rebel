@@ -20,6 +20,7 @@
  var app = {
     // Application Constructor
     initialize: function() {
+        alert('initialize');
         this.bindEvents();
         this.getCurrentLocation();
     },
@@ -29,7 +30,10 @@
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        var self = this;
+
+        console.log('bindEvents');
+        document.addEventListener('deviceready', self.onDeviceReady, false);
     },
     onError: function(error) {
         alert('code: '    + error.code    + '\n' +
@@ -37,6 +41,7 @@
     },
     onSuccess: function(position) {
         window.localStorage.setItem("location", JSON.stringify(position));
+        alert("location is set");
     },
     getCurrentLocation: function() {
         navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError);
@@ -47,18 +52,6 @@
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         alert("device ready");
-        app.receivedEvent('deviceready');
         eetNu.getLocalVenues();
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
     }
 };
