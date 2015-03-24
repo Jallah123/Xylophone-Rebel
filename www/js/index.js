@@ -16,18 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 var app = {
     // Application Constructor
+    shownVenues: undefined,
+    currentDetailVenue: undefined,
+
     initialize: function() {
-        alert('initialize');
         this.bindEvents();
+        $('#listview').delegate('li', 'tap', function () {
+            event.preventDefault();
+            var index = $(this).index();
+            app.currentDetailVenue = shownVenues[index];
+            eetNu.getReviewsByVenueId(shownVenues[index]);
+        });
     },
-    
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         var self = this;
 
@@ -40,17 +42,38 @@ var app = {
     },
     onSuccess: function(position) {
         window.localStorage.setItem("location", JSON.stringify(position));
-        alert("location is set");
+        eetNu.getLocalVenues();
     },
     getCurrentLocation: function() {
+        var interval = setInterval(function(){
+            $.mobile.loading('show');
+            clearInterval(interval);
+        },1); 
         navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError, {timeout: 15000});
     },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         alert("Device ready");
         app.getCurrentLocation();
+    },
+    addNewVenues: function(venues) {
+        alert("WTFF");
+        content = "";
+        shownVenues = venues;
+        for(var i = 0; i < venues.length; i++) {
+            content += "<li data-id='" + venues[i].id + "'>" + venues[i].name + "</li>";
+        }
+        alert(content);
+        $("#listview").html(content);
+        $("#listview").listview("refresh");
+    },
+    fillDetail: function(venue) {
+        alert("fill yo mamma up");
+        alert(venue);
+        alert(this.currentDetailVenue);
+        alert(this.currentDetailVenue.name);
+        $("#detail").find("#title").text(currentDetailVenue.name);
+        $("#detail").find("#food").text(venue.results[0].scores.food);
+
+        location.hash = "detail";
     }
 };

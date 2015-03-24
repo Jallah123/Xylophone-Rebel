@@ -42,7 +42,7 @@
             <h1>Hoofdmenu</h1>
         </div>
         <div role="main" class="ui-content">
-            <ul data-role="listview">
+            <ul data-role="listview" id="listview">
             </ul>
             <button onclick="eetNu.getLocalVenues()">Find</button>
         </div>
@@ -50,6 +50,29 @@
             <h4>Door mij</h4>
         </div>
     </div>
-    <script> app.initialize(); </script>
+    <div data-role="page" id="detail" data-rel="back">
+        <div data-role="header">
+        <h1 id="title"></h1>
+        </div>
+        <div role="main" class="ui-content" id="detailcontent">
+        <div id="ratings">
+        <ul>
+            <li>food : <span id="food" /></li>
+            <li>ambiance : <span id="ambiance" /></li>
+            <li>service : <span id="service" /></li>
+            <li>value : <span id="value" /></li>
+        </ul>
+        </div>
+        <div id="overview">
+        </div>
+        </div>
+        </div>
+        <div data-role="footer">
+            <h4>Door mij</h4>
+        </div>
+    </div>
+    <script> 
+        app.initialize(); 
+    </script>
 </body>
 </html>
