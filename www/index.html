@@ -28,7 +28,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
-    <script type="text/javascript" src="cordova.js"></script>
+    <!-- <script type="text/javascript" src="cordova.js"></script> -->
     <script type="text/javascript" src="js/jquery.js"></script> 
     <script type="text/javascript" src="js/index.js"></script> 
     <script type="text/javascript" src="js/jquery-mobile.js"></script>
@@ -40,7 +40,7 @@
 
     <div data-role="page" id="main">
         <div data-role="header">
-            <h1>Hoofdmenu</h1>
+            <h1>Main menu</h1>
         </div>
         <div role="main" class="ui-content">
             <ul data-role="listview" id="listview">
@@ -56,16 +56,21 @@
         <h1 id="title"></h1>
         </div>
         <div role="main" class="ui-content" id="detailcontent">
+        <div>
+            <img id="image" style="max-width: 100%;" />
+        </div>
         <div id="ratings">
+        <div>
+            Amount of reviews : <span id="numberReviews" />
+        </div>
         <ul>
-            <li>food : <span id="food" /></li>
-            <li>ambiance : <span id="ambiance" /></li>
-            <li>service : <span id="service" /></li>
-            <li>value : <span id="value" /></li>
+            <li>Food : <span id="food" /></li>
+            <li>Ambiance : <span id="ambiance" /></li>
+            <li>Service : <span id="service" /></li>
+            <li>Value : <span id="value" /></li>
         </ul>
         </div>
-        <div id="overview">
-        </div>
+        <div id="contact">
         </div>
         </div>
         <div data-role="footer">
