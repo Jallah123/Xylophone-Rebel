@@ -1,7 +1,9 @@
-var eetNu = {
-	baseurl:"https://api.eet.nu/",
+var eetNu = function(app){
+	var self = this;
+	var baseurl = "https://api.eet.nu/";
+	var app = app;
 
-	execRequest: function(collection, callback) {
+	execRequest = function(collection, callback) {
 		alert(collection);
 		$.ajax({
 			url: collection,
@@ -11,28 +13,31 @@ var eetNu = {
 			callback(data);
 		}).fail(function () {
 			alert('Request failed');
-		})
-	},
-	getLocalVenues: function(){
+		});
+	};
+	self.getLocalVenues = function(){
 		var location = window.localStorage.getItem("location");
 		var location = JSON.parse(window.localStorage.getItem("location"));
 		if(location){
-			eetNu.execRequest(this.baseurl + "venues?geolocation=" + location.coords.latitude + "," + location.coords.longitude + "&per_page=10", eetNu.venuesCallback);
+			execRequest(baseurl + "venues?geolocation=" + location.coords.latitude + "," + location.coords.longitude + "&per_page=10", venuesCallback);
 		} else {
 			alert("no location");
 		}
-	},
-	venuesCallback: function(data) {
+	};
+	
+	function venuesCallback(data) {
 		app.addNewVenues(data.results);
-	    var interval = setInterval(function(){
-        	$.mobile.loading('hide');
-        	clearInterval(interval);
-    	},1);   
-	},
-	getReviewsByVenueId: function(venue) {
-		eetNu.execRequest(venue.resources.reviews, eetNu.reviewCallback);
-	},
-	reviewCallback: function(data) {
+		var interval = setInterval(function(){
+			$.mobile.loading('hide');
+			clearInterval(interval);
+		},1);   
+	};
+	
+	self.getReviewsByVenueId = function(venue) {
+		execRequest(venue.resources.reviews, reviewCallback);
+	};
+	function reviewCallback(data) {
 		app.fillDetail(data);
-	}
+	};
+	return self;
 };

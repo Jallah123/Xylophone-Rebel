@@ -33,6 +33,7 @@
     <script type="text/javascript" src="js/index.js"></script> 
     <script type="text/javascript" src="js/jquery-mobile.js"></script>
     <script type="text/javascript" src="js/dataProvider.js"></script>
+
     <title>Hello World</title>
 </head>
 <body>    
@@ -71,8 +72,10 @@
             <h4>Door mij</h4>
         </div>
     </div>
-    <script> 
-        app.initialize(); 
+    <script>
+        var app = new app();
+        var eetNu = new eetNu(app);
+        app.initialize(eetNu);
     </script>
 </body>
 </html>

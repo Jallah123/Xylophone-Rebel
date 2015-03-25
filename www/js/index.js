@@ -16,46 +16,49 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app = {
-    // Application Constructor
-    shownVenues: undefined,
-    currentDetailVenue: undefined,
 
-    initialize: function() {
-        this.bindEvents();
+ var app = function(){
+    var self = this;
+    var shownVenues = undefined;
+    var currentDetailVenue = undefined;
+    var eetNu = undefined;
+
+    self.initialize = function(eetNu) {
+        alert("initializing");
+        self.eetNu = eetNu;
+        bindEvents();
         $('#listview').delegate('li', 'tap', function () {
+            alert("tap delegate");
             event.preventDefault();
             var index = $(this).index();
-            app.currentDetailVenue = shownVenues[index];
+            currentDetailVenue = shownVenues[index];
             eetNu.getReviewsByVenueId(shownVenues[index]);
         });
-    },
-    bindEvents: function() {
-        var self = this;
-
+    };
+    bindEvents = function() {
         console.log('bindEvents');
-        document.addEventListener('deviceready', self.onDeviceReady, false);
-    },
-    onError: function(error) {
+        document.addEventListener('deviceready', onDeviceReady, false);
+    };
+    onError = function(error) {
         alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
-    },
-    onSuccess: function(position) {
+    };
+    onSuccess = function(position) {
         window.localStorage.setItem("location", JSON.stringify(position));
         eetNu.getLocalVenues();
-    },
-    getCurrentLocation: function() {
+    };
+    getCurrentLocation = function() {
         var interval = setInterval(function(){
             $.mobile.loading('show');
             clearInterval(interval);
         },1); 
-        navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError, {timeout: 15000});
-    },
-    onDeviceReady: function() {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 15000});
+    };
+    onDeviceReady = function() {
         alert("Device ready");
-        app.getCurrentLocation();
-    },
-    addNewVenues: function(venues) {
+        getCurrentLocation();
+    };
+    self.addNewVenues = function(venues) {
         alert("WTFF");
         content = "";
         shownVenues = venues;
@@ -65,15 +68,59 @@ var app = {
         alert(content);
         $("#listview").html(content);
         $("#listview").listview("refresh");
-    },
-    fillDetail: function(venue) {
+    };
+    self.fillDetail = function(venue) {
         alert("fill yo mamma up");
-        alert(venue);
-        alert(this.currentDetailVenue);
-        alert(this.currentDetailVenue.name);
+        console.log(self.currentDetailVenue);
         $("#detail").find("#title").text(currentDetailVenue.name);
-        $("#detail").find("#food").text(venue.results[0].scores.food);
+        if(venue.results.length > 0){
+            var averages = calculateAverageScore(venue.results);
+            $("#detail").find("#food").text(averages['food']);
+            $("#detail").find("#ambiance").text(averages['ambiance']);
+            $("#detail").find("#service").text(averages['service']);
+            $("#detail").find("#value").text(averages['value']);
+        }
 
-        location.hash = "detail";
-    }
+        location.hash = "detail";     
+    };
+
+    calculateAverageScore = function(reviews) {
+        var averageFood = 0;
+        var averageAmbiance = 0;
+        var averageService = 0;
+        var averageValue = 0;
+
+        var foodCount = 0;
+        var ambianceCount = 0;
+        var serviceCount = 0;
+        var valueCount = 0;
+
+        for(var i = 0; i < reviews.length; i++){
+            if(reviews[i].scores.food != null){
+                averageFood += reviews[i].scores.food;
+                foodCount++;
+            }
+            if(reviews[i].scores.ambiance != null){
+                averageAmbiance += reviews[i].scores.ambiance;
+                ambianceCount++;
+            }
+            if(reviews[i].scores.service != null){
+                averageService += reviews[i].scores.service;
+                serviceCount++;
+            }
+            if(reviews[i].scores.value != null){
+                averageValue += reviews[i].scores.value;
+                valueCount++;
+            }
+        }
+
+        var array = new Array();
+        array['food'] = Math.round((averageFood / foodCount));
+        array['ambiance'] = Math.round((averageAmbiance / ambianceCount));
+        array['service'] = Math.round((averageService / serviceCount));
+        array['value'] = Math.round((averageValue / valueCount));
+        return array;
+    };
+
+    return self;
 };
