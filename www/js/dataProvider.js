@@ -16,7 +16,6 @@ var eetNu = function(app){
 		});
 	};
 	self.getLocalVenues = function(){
-		alert(window.localStorage.getItem("location"));
 		var location = JSON.parse(window.localStorage.getItem("location"));
 		if(location){
 			execRequest(baseurl + "venues?geolocation=" + location.coords.latitude + "," + location.coords.longitude + "&per_page=20", venuesCallback);
