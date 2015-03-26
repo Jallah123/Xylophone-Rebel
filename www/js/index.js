@@ -49,16 +49,22 @@
         navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 15000});
     };
     onResume = function(){
-        currentDetailVenue = window.localStorage.getItem("currentDetailVenue");
-        alert(currentDetailVenue);
-        if(currentDetailVenue != undefined){
-            window.localStorage.removeItem("currentDetailVenue");
-            location.hash = "detail";
-        }
+        setTimeout(function() {
+            currentDetailVenue = window.localStorage.getItem("currentDetailVenue");
+            alert(currentDetailVenue);
+            if(currentDetailVenue != undefined){
+                window.localStorage.removeItem("currentDetailVenue");
+                location.hash = "detail";
+            }
+        }, 0);
+        
     };
     onPause = function(){
-        alert("onPause");
-        window.localStorage.setItem("currentDetailVenue", JSON.stringify(currentDetailVenue));
+        setTimeout(function() {
+            alert("onPause");
+            window.localStorage.setItem("currentDetailVenue", JSON.stringify(currentDetailVenue));
+        }, 0);
+        
     };
     onDeviceReady = function() {
 
