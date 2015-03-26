@@ -75,7 +75,7 @@
              $("#detail").find("#image").attr("src", currentDetailVenue.images.original[0]);
         }
         $("#detail").find("#contact").html("Contact \n" + "Telephone: <a href='tel:" + currentDetailVenue.telephone +"'>" + currentDetailVenue.telephone  +  "</a>\n Website: <a href='" + currentDetailVenue.website_url + "' target='_blank'>" + currentDetailVenue.website_url + "</a>");
-        $("#detail").find("#navigation").html("<a href='maps:' data-role='button'>Start navigation</a>");
+        $("#detail").find("#navigation").html("<button onclick='window.location='geo:" + currentDetailVenue.geolocation.latitude + "," + currentDetailVenue.geolocation.longitude + "' id='navbutton'>Start navigation</button>");
         location.hash = "detail";     
     };
     function setReviews(reviews){
