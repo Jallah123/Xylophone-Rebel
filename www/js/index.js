@@ -77,8 +77,7 @@
     };
 
     function openExternal(elem) {
-        window.open(elem.href, "_system");
-        return false; // Prevent execution of the default onClick handler 
+        navigator.app.loadUrl(elem.href, { openExternal:true } );
     };
 
     self.addNewVenues = function(venues) {
