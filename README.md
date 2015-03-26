@@ -28,7 +28,7 @@ In deze app moet het natuurlijk mogelijk zijn om restaurants te zoeken naar jouw
 | Mooi grafisch weergeven hoe de waardering van het restaurant is per categorie | :heavy_check_mark: | :heavy_check_mark: |
 | Werken met Native plugins van een device | :heavy_check_mark: | :heavy_check_mark: |
 | Interactie naar andere apps hebben (mailto:, tel:, sms:) | :heavy_check_mark: | :heavy_check_mark: |
-| Bij het installeren enkel om de permissies vragen die gebruikt worden en geen onnodige permissies vereisen | :heavy_check_mark: | :x: |
+| Bij het installeren enkel om de permissies vragen die gebruikt worden en geen onnodige permissies vereisen | :heavy_check_mark: | :heavy_check_mark: |
 | Externe link openen (in geval van eet.nu de website van het restaurant) | :heavy_check_mark: | :heavy_check_mark: |
 | De applicatie maakt gebruikt van ten minste 2 verschillende native plugins van Phonegap | :heavy_check_mark: | :x: |
 | Werken met de LocalDB van een device | :heavy_check_mark: | :x: |
