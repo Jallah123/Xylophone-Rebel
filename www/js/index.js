@@ -30,6 +30,7 @@
             event.preventDefault();
             var index = $(this).index();
             currentDetailVenue = shownVenues[index];
+            window.localStorage.setItem("currentDetailVenue", JSON.stringify(currentDetailVenue));
             eetNu.getReviewsByVenueId(shownVenues[index]);
         });
     };
