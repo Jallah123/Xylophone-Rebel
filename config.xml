@@ -3,7 +3,7 @@
   <description>Hello World sample application that responds to the deviceready event.</description>
   <author href="http://phonegap.com" email="support@phonegap.com">PhoneGap Team</author>
   <content src="index.html"/>
-  <icon src="res/icon.png"/>
+  <icon src="res/logo.png"/>
 
   <gap:splash src="res/splash.png" />
       <preference name="SplashScreen" value="splashscreen" />
