@@ -30,13 +30,11 @@
             event.preventDefault();
             var index = $(this).index();
             currentDetailVenue = shownVenues[index];
-            window.localStorage.setItem("currentDetailVenue", JSON.stringify(currentDetailVenue));
             eetNu.getReviewsByVenueId(shownVenues[index]);
         });
     };
     bindEvents = function() {
         console.log('bindEvents');
-        document.addEventListener("resume", onResume, false);
         document.addEventListener('deviceready', onDeviceReady, false);
     };
     onError = function(error) {
@@ -52,15 +50,25 @@
     };
     onResume = function(){
         currentDetailVenue = window.localStorage.getItem("currentDetailVenue");
+        alert(currentDetailVenue);
         if(currentDetailVenue != undefined){
+            window.localStorage.removeItem("currentDetailVenue");
             location.hash = "detail";
         }
     };
+    onPause = function(){
+        alert("onPause");
+        window.localStorage.setItem("currentDetailVenue", JSON.stringify(currentDetailVenue));
+    };
     onDeviceReady = function() {
+
         var interval = setInterval(function(){
             $.mobile.loading('show');
             clearInterval(interval);
         },1); 
+
+        document.addEventListener("resume", onResume, false);
+        document.addEventListener("pause", onPause, false);
         getCurrentLocation();
     };
     self.addNewVenues = function(venues) {
