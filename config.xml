@@ -7,7 +7,7 @@
 
   <gap:splash src="res/splash.png" />
       <preference name="SplashScreen" value="splashscreen" />
-      <preference name="SplashScreenDelay" value="10000" />
+      <preference name="SplashScreenDelay" value="5000" />
 
   <preference name="permissions" value="none"/>
   <preference name="orientation" value="default"/>
