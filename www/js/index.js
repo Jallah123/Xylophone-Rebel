@@ -75,6 +75,12 @@
         document.addEventListener("pause", onPause, false);
         getCurrentLocation();
     };
+
+    function openExternal(elem) {
+        window.open(elem.href, "_system");
+        return false; // Prevent execution of the default onClick handler 
+    };
+
     self.addNewVenues = function(venues) {
         content = "";
         shownVenues = venues;
@@ -94,10 +100,10 @@
         if(currentDetailVenue.images.original.length > 0){
              $("#detail").find("#image").attr("src", currentDetailVenue.images.original[0]);
         }
-        $("#detail").find("#contact").html("Contact \n" + "Telephone: <a href='tel:" + currentDetailVenue.telephone +"'>" + currentDetailVenue.telephone  +  "</a>\n Website: <a href='" + currentDetailVenue.website_url + "' target='_system'>" + currentDetailVenue.website_url + "</a>");
+        $("#detail").find("#contact").html("Contact \n" + "Telephone: <a href='tel:" + currentDetailVenue.telephone +"'>" + currentDetailVenue.telephone  +  "</a>\n Website: <a href='" + currentDetailVenue.website_url + "' onClick='javascript:return openExternal(this)' target='_system'>" + currentDetailVenue.website_url + "</a>");
         $("#detail").find("#navbutton").attr("onclick","window.open(geo:" + currentDetailVenue.geolocation.latitude + "," + currentDetailVenue.geolocation.longitude + ")");
         //<button onclick="window.open(" geo:52.0277951,5.0816377')'="" id="navbutton" class=" ui-btn ui-shadow ui-corner-all">Start navigation</button>
-        location.hash = "detail";     
+        location.hash = "detail";
     };
     function setReviews(reviews){
         if(reviews.results.length > 0)
