@@ -51,7 +51,6 @@
     onResume = function(){
         setTimeout(function() {
             currentDetailVenue = window.localStorage.getItem("currentDetailVenue");
-            alert(currentDetailVenue);
             if(currentDetailVenue != undefined){
                 window.localStorage.removeItem("currentDetailVenue");
                 location.hash = "detail";
@@ -60,7 +59,6 @@
     };
     onPause = function(){
         setTimeout(function() {
-            alert("onPause");
             window.localStorage.setItem("currentDetailVenue", JSON.stringify(currentDetailVenue));
         }, 0);  
     };
@@ -76,8 +74,10 @@
         getCurrentLocation();
     };
 
-    function openExternal(elem) {
-        navigator.app.loadUrl(elem.href, { openExternal:true } );
+    self.openExternal = function() {
+        event.preventDefault();
+        window.open($("#website_url").attr('href'), '_system', 'location=yes');
+        return false;
     };
 
     self.addNewVenues = function(venues) {
@@ -99,7 +99,7 @@
         if(currentDetailVenue.images.original.length > 0){
              $("#detail").find("#image").attr("src", currentDetailVenue.images.original[0]);
         }
-        $("#detail").find("#contact").html("Contact \n" + "Telephone: <a href='tel:" + currentDetailVenue.telephone +"'>" + currentDetailVenue.telephone  +  "</a>\n Website: <a href='" + currentDetailVenue.website_url + "' onClick='javascript:return openExternal(this)' target='_system'>" + currentDetailVenue.website_url + "</a>");
+        $("#detail").find("#contact").html("Contact \n" + "Telephone: <a href='tel:" + currentDetailVenue.telephone +"'>" + currentDetailVenue.telephone  +  "</a>\n Website: <a id='website_url' href='" + currentDetailVenue.website_url + "' onclick='return app.openExternal();' target='_system'>" + currentDetailVenue.website_url + "</a>");
         $("#detail").find("#navbutton").attr("onclick","window.open(geo:" + currentDetailVenue.geolocation.latitude + "," + currentDetailVenue.geolocation.longitude + ")");
         //<button onclick="window.open(" geo:52.0277951,5.0816377')'="" id="navbutton" class=" ui-btn ui-shadow ui-corner-all">Start navigation</button>
         location.hash = "detail";
