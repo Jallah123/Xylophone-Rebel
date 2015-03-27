@@ -23,14 +23,18 @@
     var currentDetailVenue = undefined;
     var eetNu = undefined;
 
+    $(".footer_text").text("Door mij");
+
     self.initialize = function(eetNu) {
         self.eetNu = eetNu;
         bindEvents();
         $('#listview').delegate('li', 'tap', function () {
-            event.preventDefault();
             var index = $(this).index();
             currentDetailVenue = shownVenues[index];
             eetNu.getReviewsByVenueId(shownVenues[index]);
+        });
+        $("#detail").live("swipeleft", function() {
+            alert("swipe");
         });
     };
     bindEvents = function() {
@@ -53,7 +57,7 @@
             currentDetailVenue = window.localStorage.getItem("currentDetailVenue");
             if(currentDetailVenue != undefined){
                 window.localStorage.removeItem("currentDetailVenue");
-                location.hash = "detail";
+                $.mobile.changePage("#detail");
             }
         }, 0); 
     };
