@@ -33,6 +33,7 @@
     <script type="text/javascript" src="js/index.js"></script> 
     <script type="text/javascript" src="js/jquery-mobile.js"></script>
     <script type="text/javascript" src="js/dataProvider.js"></script>
+    <script type="text/javascript" src="js/shake.js"></script>
 
     <title>Hello World</title>
 </head>
@@ -85,6 +86,9 @@
     <h1>Settings</h1>
     </div>
     <div role="main" class="ui-content" id="settingscontent">
+        <div>Max distance: <input id="max_distance" type="number" min="5" max="50" step="1"></div>
+        <input type="submit" value="save" id="savesettings">
+
     </div>
     <div data-role="footer">
         <h4 class="footer_text"></h4>
