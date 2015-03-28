@@ -18,8 +18,11 @@ var eetNu = function(app){
 	self.getLocalVenues = function(){
 		var location = JSON.parse(window.localStorage.getItem("location"));
 		if(location){
-			execRequest(baseurl + "venues?geolocation=" + location.coords.latitude + "," + location.coords.longitude + "&per_page=20", venuesCallback);
-		} else {
+			app.getMaxDistance(function(transaction, results){
+				alert(results.rows.item(0).max_distance);
+				execRequest(baseurl + "venues?geolocation=" + location.coords.latitude + "," + location.coords.longitude + "&per_page=20&max_distance=" + results.rows.item(0).max_distance, venuesCallback);
+				});
+		}else {
 			alert("no location");
 		}
 	};

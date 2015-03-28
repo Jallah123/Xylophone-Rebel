@@ -24,9 +24,10 @@
     var eetNu = undefined;
     var shakeEvent = undefined;
     var db = undefined;
+    var settings = undefined;
 
     self.initialize = function(eetNu) {
-        // createDb();
+        createDb();
         myShakeEvent = new Shake({
             threshold: 15 // optional shake strength threshold
         });
@@ -38,28 +39,22 @@
             currentDetailVenue = shownVenues[index];
             eetNu.getReviewsByVenueId(shownVenues[index]);
         });
-        $("#savesettings").on('click', function(){
-            saveSettings();
-        });
     };
     createDb = function() {
-        alert("creating");
+        //alert("creating");
         db = openDatabase('mydb', '1.0', 'my first database', 2 * 1024 * 1024);
         db.transaction(function (tx) {
-            tx.executeSql('CREATE TABLE settings (id unique, max_distance),');
-            
-            /*
-            tx.executeSql('SELECT * FROM settings', [], function (tx, results) {
-                var len = results.rows.length, i;
-                for (i = 0; i < len; i++) {
-                    // alert(results.rows.item(i).text);
-                    console.log("item found");
-                }
-                */
-            });
+            tx.executeSql('CREATE TABLE IF NOT EXISTS settings (id unique, max_distance)');
+            tx.executeSql('INSERT INTO settings (id, max_distance) VALUES (1, 5)');
+        });
     };
-    saveSettings = function() {
-        alert($("#max_distance").val());
+    self.getMaxDistance = function(onSuccess){
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT "max_distance" FROM settings', [], onSuccess, dbError);
+        });
+    };
+    dbError = function (err) {
+        console.log(err.code);
     };
     bindEvents = function() {
         console.log('bindEvents');
@@ -67,8 +62,12 @@
         window.addEventListener('shake', shakeEventDidOccur, false);
     };
     shakeEventDidOccur = function() {
-        $.mobile.changePage("#settings");
-    }
+        alert("boven");
+        $("body").pagecontainer("change", "settings.html", {reload : true});
+        var settings = new settings();
+        settings.initialize();
+        alert("onder");
+    };
     onError = function(error) {
         alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
