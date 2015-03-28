@@ -150,8 +150,7 @@
         $("#detail").find("#contact").html("Contact " + "Telephone: <a href='tel:" + currentDetailVenue.telephone +"'>" + currentDetailVenue.telephone  +  "</a> Website: <a id='website_url' href='" + currentDetailVenue.website_url + "' onclick='return app.openExternal();' target='_system'>" + currentDetailVenue.website_url + "</a>");
         $("#detail").find("#navbutton").attr("onclick","window.open(geo:" + currentDetailVenue.geolocation.latitude + "," + currentDetailVenue.geolocation.longitude + ")");
         // <button onclick="window.open(" geo:52.0277951,5.0816377')'="" id="navbutton" class=" ui-btn ui-shadow ui-corner-all">Start navigation</button>
-        alert($(document).width());
-        if($(document).width() < 540){
+        if($(document).width() <= 720){
             $.mobile.changePage("#detail");
         }
     };
