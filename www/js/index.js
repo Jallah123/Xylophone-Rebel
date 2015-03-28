@@ -25,6 +25,7 @@
     var shakeEvent = undefined;
     var db = undefined;
     var settings = undefined;
+    var panelOpen = false;
 
     self.initialize = function(eetNu) {
         createDb();
@@ -34,10 +35,17 @@
         myShakeEvent.start();
         self.eetNu = eetNu;
         bindEvents();
+        $(".footer_text").text("Door Mij");
         $('#listview').delegate('li', 'tap', function () {
             var index = $(this).index();
             currentDetailVenue = shownVenues[index];
             eetNu.getReviewsByVenueId(shownVenues[index]);
+        });
+        $("#settings").find("#savesettings").on('click', function(){
+            saveSettings();
+        });
+        $("#detail").on("swipeleft", function(e){
+            alert("swipe");
         });
     };
     createDb = function() {
@@ -53,6 +61,12 @@
             tx.executeSql('SELECT "max_distance" FROM settings', [], onSuccess, dbError);
         });
     };
+    saveSettings = function() {
+        db.transaction(function (tx) {
+            tx.executeSql('UPDATE settings SET max_distance=' + $("#max_distance").val() + ' WHERE id=1');
+        });
+        $("#settings").find("#message").text("Max distance saved.");
+    };
     dbError = function (err) {
         console.log(err.code);
     };
@@ -62,11 +76,14 @@
         window.addEventListener('shake', shakeEventDidOccur, false);
     };
     shakeEventDidOccur = function() {
-        alert("boven");
-        $("body").pagecontainer("change", "settings.html", {reload : true});
-        var settings = new settings();
-        settings.initialize();
-        alert("onder");
+        if(panelOpen){
+            $("#settings").panel("close");
+            panelOpen = false;
+            $("#settings").find("#message").text("");
+        }else{
+            $("#settings").panel("open");
+            panelOpen = true;
+        }
     };
     onError = function(error) {
         alert('code: '    + error.code    + '\n' +
@@ -133,7 +150,9 @@
         $("#detail").find("#contact").html("Contact " + "Telephone: <a href='tel:" + currentDetailVenue.telephone +"'>" + currentDetailVenue.telephone  +  "</a> Website: <a id='website_url' href='" + currentDetailVenue.website_url + "' onclick='return app.openExternal();' target='_system'>" + currentDetailVenue.website_url + "</a>");
         $("#detail").find("#navbutton").attr("onclick","window.open(geo:" + currentDetailVenue.geolocation.latitude + "," + currentDetailVenue.geolocation.longitude + ")");
         // <button onclick="window.open(" geo:52.0277951,5.0816377')'="" id="navbutton" class=" ui-btn ui-shadow ui-corner-all">Start navigation</button>
-        $.mobile.changePage("#detail");
+        if($(document).width() < 450){
+            $.mobile.changePage("#detail");
+        }
     };
 
     function setReviews(reviews){

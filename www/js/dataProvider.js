@@ -19,7 +19,6 @@ var eetNu = function(app){
 		var location = JSON.parse(window.localStorage.getItem("location"));
 		if(location){
 			app.getMaxDistance(function(transaction, results){
-				alert(results.rows.item(0).max_distance);
 				execRequest(baseurl + "venues?geolocation=" + location.coords.latitude + "," + location.coords.longitude + "&per_page=20&max_distance=" + results.rows.item(0).max_distance, venuesCallback);
 				});
 		}else {

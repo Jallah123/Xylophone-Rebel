@@ -39,7 +39,6 @@
     <title>Hello World</title>
 </head>
 <body>    
-
     <div data-role="page" id="main">
         <div data-role="header">
             <h1>Main menu</h1>
@@ -47,41 +46,50 @@
         <div role="main" class="ui-content">
             <ul data-role="listview" id="listview">
             </ul>
-            <button onclick="eetNu.getLocalVenues()">Find</button>
+            <!-- <button onclick="eetNu.getLocalVenues()">Find</button> -->
         </div>
         <div data-role="footer">
             <h4 class="footer_text"></h4>
+        </div>
+        <div data-role="panel" id="settings" data-rel="back">
+            <div role="main" class="ui-content" id="settingscontent">
+                <div>Max distance: <input id="max_distance" type="number" min="5" max="50" step="1"></div>
+                <input type="submit" value="save" id="savesettings">
+                <span id="message">
+                </div>
+            </div>
         </div>
     </div>
     <div data-role="page" id="detail" data-rel="back">
         <div data-role="header">
-        <h1 id="title"></h1>
+            <h1 id="title"></h1>
         </div>
         <div role="main" class="ui-content" id="detailcontent">
-        <div>
-            <img id="image" style="max-width: 100%;" />
-        </div>
-        <div id="ratings">
-        <div>
-            Amount of reviews : <span id="numberReviews" />
-        </div>
-        <ul>
-            <li>Food : <span id="food" /></li>
-            <li>Ambiance : <span id="ambiance" /></li>
-            <li>Service : <span id="service" /></li>
-            <li>Value : <span id="value" /></li>
-        </ul>
-        </div>
-        <div id="contact">
-        </div>
-        <div id="navigation">
-            <button id="navbutton">Start Navigation</button>
-        </div>
+            <div>
+                <img id="image" style="max-width: 100%;" />
+            </div>
+            <div id="ratings">
+                <div>
+                    Amount of reviews : <span id="numberReviews" />
+                </div>
+                <ul>
+                    <li>Food : <span id="food" /></li>
+                    <li>Ambiance : <span id="ambiance" /></li>
+                    <li>Service : <span id="service" /></li>
+                    <li>Value : <span id="value" /></li>
+                </ul>
+            </div>
+            <div id="contact">
+            </div>
+            <div id="navigation">
+                <button id="navbutton">Start Navigation</button>
+            </div>
         </div>
         <div data-role="footer">
             <h4 class="footer_text"></h4>
         </div>
     </div>
+
     <script>
         var app = new app();
         var eetNu = new eetNu(app);
