@@ -35,9 +35,9 @@ In deze app moet het natuurlijk mogelijk zijn om restaurants te zoeken naar jouw
 | De app heeft een settings pagina die settings lokaal kan opslaan | :heavy_check_mark: | :heavy_check_mark: |
 | De app kan statische data lokaal cachen | :heavy_check_mark: | :x: |
 | Ingevulde pagina’s onthouden bij afsluiten app | :heavy_check_mark: | :x: |
-| Optimalisatie toepassen in een PhoneGap applicatie | :heavy_check_mark: | :x: |
+| Optimalisatie toepassen in een PhoneGap applicatie | :heavy_check_mark: | :heavy_check_mark: |
 | Er wordt gereageerd op touch events in plaats van desktop events | :heavy_check_mark: | :heavy_check_mark: |
-| Er wordt gebruik gemaakt van sprite images | :heavy_check_mark: | :x: |
+| Er wordt gebruik gemaakt van sprite images | :heavy_check_mark: | :heavy_check_mark: |
 | De pagina's worden al gerendered terwijl de data opgehaald wordt | :heavy_check_mark: | :heavy_check_mark: |
 | Geen lag tussen het navigeren van veel gebruikte paginas. | :heavy_check_mark: | :heavy_check_mark: |
 | **Extra** |
@@ -45,7 +45,7 @@ In deze app moet het natuurlijk mogelijk zijn om restaurants te zoeken naar jouw
 | Een leuke eigen implementatie waar wij zelf nog niet aan gedacht hadden | :heavy_check_mark: | :x: |
 | De applicatie werkt foutloos | :heavy_check_mark: | :heavy_check_mark: |
 | De applicatie heeft een Splashscreen | :heavy_check_mark: | :heavy_check_mark:|
-| Het is mogelijk om navigatie te starten naar een restaurant/eetgelegenheid | :heavy_check_mark: | :x: |
+| Het is mogelijk om navigatie te starten naar een restaurant/eetgelegenheid | :heavy_check_mark: | :heavy_check_mark: |
 | **Functioneel** |
 | Het is mogelijk een overzicht te zien van restaurants bij jou in de buurt. | :heavy_check_mark: | :heavy_check_mark:|
 | Het is mogelijk om meer details te zien van een restaurant zoals bijvoorbeeld prijs, kwaliteit verhouding | :heavy_check_mark: | :heavy_check_mark: |
