@@ -117,12 +117,6 @@
     getCurrentLocation = function() {
         navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 15000});
     };
-    onResume = function(){
-        var tempDistance = window.localStorage.getItem("tempDistance");
-        if(tempDistance != ""){
-            $("#settings").find("#max_distance").text(tempDistance);
-        }
-    };
     onPause = function(){
         if($("#settings").find("#max_distance").val() != ""){
             window.localStorage.setItem("tempDistance", $("#settings").find("#max_distance").val());
@@ -135,8 +129,11 @@
             clearInterval(interval);
         },1); 
 
-        document.addEventListener("resume", onResume, false);
         document.addEventListener("pause", onPause, false);
+        var tempDistance = window.localStorage.getItem("tempDistance");
+        if(tempDistance != ""){
+            $("#settings").find("#max_distance").text(tempDistance);
+        }
         getCurrentLocation();
     };
 
