@@ -42,7 +42,7 @@ In deze app moet het natuurlijk mogelijk zijn om restaurants te zoeken naar jouw
 | Geen lag tussen het navigeren van veel gebruikte paginas. | :heavy_check_mark: | :heavy_check_mark: |
 | **Extra** |
 | De app ondersteunt verschillende talen | :heavy_check_mark: | :x: |
-| Een leuke eigen implementatie waar wij zelf nog niet aan gedacht hadden | :heavy_check_mark: | :x: |
+| Een leuke eigen implementatie waar wij zelf nog niet aan gedacht hadden | :heavy_check_mark: | :heavy_check_mark: |
 | De applicatie werkt foutloos | :heavy_check_mark: | :heavy_check_mark: |
 | De applicatie heeft een Splashscreen | :heavy_check_mark: | :heavy_check_mark:|
 | Het is mogelijk om navigatie te starten naar een restaurant/eetgelegenheid | :heavy_check_mark: | :heavy_check_mark: |
