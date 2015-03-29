@@ -26,6 +26,7 @@
     var db = undefined;
     var settings = undefined;
     var panelOpen = false;
+    var nextPage = undefined;
 
     self.initialize = function(eetNu) {
         createDb();
@@ -44,8 +45,28 @@
         $("#settings").find("#savesettings").on('click', function(){
             saveSettings();
         });
-        $("#detail").on("swipeleft", function(e){
-            alert("swipe");
+        $('#listview').delegate('li', 'swipeleft', function () {
+            var index = $(this).index();
+            currentDetailVenue = shownVenues[index];
+            eetNu.getReviewsByVenueId(shownVenues[index]);
+        });
+        $("#detail").on("swiperight", function(e){
+            if($(document).width() <= 540){
+                $.mobile.changePage("#main");
+            }
+        });
+        $("#main").on('touchmove', function(e){
+            if($(window).scrollTop() == ($(document).height() - $(window).height())){
+                if($(document).width() <= 540){
+                    loadNewVenues();
+                }
+            }
+        });
+    };
+    loadNewVenues = function(){
+        self.eetNu.execRequest(self.nextPage, function(data){
+            self.setNextPage(data.pagination.next_page);
+            self.addNewVenues(data.results);
         });
     };
     createDb = function() {
@@ -127,9 +148,19 @@
         window.open($("#website_url").attr('href'), '_system', 'location=yes');
         return false;
     };
+    self.openFacebook = function() {
+        event.preventDefault();
+        window.open($("#facebook_url").attr('href'), '_system', 'location=yes');
+        return false;
+    };
+    self.openTwitter = function() {
+        event.preventDefault();
+        window.open($("#twitter_url").attr('href'), '_system', 'location=yes');
+        return false;
+    };
 
     self.addNewVenues = function(venues) {
-        content = "";
+        content = $("#listview").html();
         shownVenues = venues;
         for(var i = 0; i < venues.length; i++) {
             content += "<li data-id='" + venues[i].id + "'>" + venues[i].name + "</li>";
@@ -138,6 +169,7 @@
         $("#listview").listview("refresh");
     };
     self.fillDetail = function(reviews) {
+        var location = JSON.parse(window.localStorage.getItem("location"));
         $("#detail").find("#image").attr("src", "");
         $("#detail").find("#title").text(currentDetailVenue.name);
         $("#detail").find("#numberReviews").text(reviews.results.length);
@@ -148,9 +180,14 @@
             $("#detail").find("#image").attr("src", currentDetailVenue.images.original[0]);
         }
         $("#detail").find("#contact").html("Contact " + "Telephone: <a href='tel:" + currentDetailVenue.telephone +"'>" + currentDetailVenue.telephone  +  "</a> Website: <a id='website_url' href='" + currentDetailVenue.website_url + "' onclick='return app.openExternal();' target='_system'>" + currentDetailVenue.website_url + "</a>");
-        $("#detail").find("#navbutton").attr("onclick","window.open(geo:" + currentDetailVenue.geolocation.latitude + "," + currentDetailVenue.geolocation.longitude + ")");
-        // <button onclick="window.open(" geo:52.0277951,5.0816377')'="" id="navbutton" class=" ui-btn ui-shadow ui-corner-all">Start navigation</button>
-        if($(document).width() <= 720){
+        $("#detail").find("#navbutton").attr("onclick","window.open('https://www.google.com/maps/dir/"+ location.coords.latitude + "," + location.coords.longitude +"/" + currentDetailVenue.address.street.replace(" ", "+") + "+" + currentDetailVenue.address.zipcode.replace(" ", "+") + "', '_system', 'location=yes')");
+        $("#detail").find("#facebook").html("<a id='facebook-url' href='" + currentDetailVenue.facebook + "' onclick='return app.openFacebook();' target='_system'>Facebook</a>");
+        $("#detail").find("#twitter").html("<a id='twitter-url' href='" + currentDetailVenue.twitter + "' onclick='return app.openTwitter();' target='_system'>Twitter</a>");
+        
+        //BUILDED WIDTH
+        //if($(document).width() <= 720){
+        //DEV APP WIDTH
+        if($(document).width() <= 540){
             $.mobile.changePage("#detail");
         }
     };
@@ -172,6 +209,9 @@
             $("#detail").find("#value").text(0);
         }
     };
+    self.setNextPage = function(next_page){
+        this.nextPage = next_page;
+    }
     calculateAverageScore = function(reviews) {
         var averageFood = 0;
         var averageAmbiance = 0;
@@ -222,5 +262,6 @@
         }
         return array;
     };
+
     return self;
 };

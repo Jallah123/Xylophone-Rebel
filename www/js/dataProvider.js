@@ -3,8 +3,8 @@ var eetNu = function(app){
 	var baseurl = "https://api.eet.nu/";
 	var app = app;
 
-	execRequest = function(collection, callback) {
-		// alert(collection);
+	self.execRequest = function(collection, callback) {
+		alert(collection);
 		$.ajax({
 			url: collection,
 			method: 'GET',
@@ -19,7 +19,7 @@ var eetNu = function(app){
 		var location = JSON.parse(window.localStorage.getItem("location"));
 		if(location){
 			app.getMaxDistance(function(transaction, results){
-				execRequest(baseurl + "venues?geolocation=" + location.coords.latitude + "," + location.coords.longitude + "&per_page=20&max_distance=" + results.rows.item(0).max_distance, venuesCallback);
+				self.execRequest(baseurl + "venues?geolocation=" + location.coords.latitude + "," + location.coords.longitude + "&per_page=20&max_distance=" + results.rows.item(0).max_distance, venuesCallback);
 				});
 		}else {
 			alert("no location");
@@ -27,6 +27,7 @@ var eetNu = function(app){
 	};
 	
 	function venuesCallback(data) {
+		app.setNextPage(data.pagination.next_page);
 		app.addNewVenues(data.results);
 		var interval = setInterval(function(){
 			$.mobile.loading('hide');
@@ -35,7 +36,7 @@ var eetNu = function(app){
 	};
 	
 	self.getReviewsByVenueId = function(venue) {
-		execRequest(venue.resources.reviews, reviewCallback);
+		self.execRequest(venue.resources.reviews, reviewCallback);
 	};
 	function reviewCallback(data) {
 		app.fillDetail(data);
