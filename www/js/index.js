@@ -51,13 +51,13 @@
             eetNu.getReviewsByVenueId(shownVenues[index]);
         });
         $("#detail").on("swiperight", function(e){
-            if($(document).width() <= 540){
+            if($(document).width() <= 720){
                 $.mobile.changePage("#main");
             }
         });
         $("#main").on('touchmove', function(e){
             if($(window).scrollTop() == ($(document).height() - $(window).height())){
-                if($(document).width() <= 540){
+                if($(document).width() <= 720){
                     loadNewVenues();
                 }
             }
@@ -118,18 +118,15 @@
         navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 15000});
     };
     onResume = function(){
-        setTimeout(function() {
-            currentDetailVenue = window.localStorage.getItem("currentDetailVenue");
-            if(currentDetailVenue != undefined){
-                window.localStorage.removeItem("currentDetailVenue");
-                $.mobile.changePage("#detail");
-            }
-        }, 0); 
+        var tempDistance = window.localStorage.getItem("tempDistance");
+        if(tempDistance != ""){
+            $("#settings").find("#max_distance").text(tempDistance);
+        }
     };
     onPause = function(){
-        setTimeout(function() {
-            window.localStorage.setItem("currentDetailVenue", JSON.stringify(currentDetailVenue));
-        }, 0);  
+        if($("#settings").find("#max_distance").val() != ""){
+            window.localStorage.setItem("tempDistance", $("#settings").find("#max_distance").val());
+        }
     };
     onDeviceReady = function() {
 
@@ -160,12 +157,16 @@
     };
 
     self.addNewVenues = function(venues) {
-        content = $("#listview").html();
-        shownVenues = venues;
+        content = "";
+        if(shownVenues != undefined){
+            shownVenues = shownVenues.concat(venues);
+        }else{
+            shownVenues = venues;
+        }
         for(var i = 0; i < venues.length; i++) {
             content += "<li data-id='" + venues[i].id + "'>" + venues[i].name + "</li>";
         }
-        $("#listview").html(content);
+        $("#listview").append(content);
         $("#listview").listview("refresh");
     };
     self.fillDetail = function(reviews) {
@@ -183,11 +184,11 @@
         $("#detail").find("#navbutton").attr("onclick","window.open('https://www.google.com/maps/dir/"+ location.coords.latitude + "," + location.coords.longitude +"/" + currentDetailVenue.address.street.replace(" ", "+") + "+" + currentDetailVenue.address.zipcode.replace(" ", "+") + "', '_system', 'location=yes')");
         $("#detail").find("#facebook").html("<a id='facebook-url' href='" + currentDetailVenue.facebook + "' onclick='return app.openFacebook();' target='_system'>Facebook</a>");
         $("#detail").find("#twitter").html("<a id='twitter-url' href='" + currentDetailVenue.twitter + "' onclick='return app.openTwitter();' target='_system'>Twitter</a>");
-        
+
         //BUILDED WIDTH
-        //if($(document).width() <= 720){
+        if($(document).width() <= 720){
         //DEV APP WIDTH
-        if($(document).width() <= 540){
+        //if($(document).width() <= 540){
             $.mobile.changePage("#detail");
         }
     };

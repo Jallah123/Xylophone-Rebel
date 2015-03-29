@@ -114,10 +114,10 @@ h1 {
 }
 
 /* BUILDED WIDTH */
-/* @media all and (min-width: 721px) { */
+ @media all and (min-width: 721px) { 
 
 /* DEV APP WIDTH */
- @media all and (min-width: 540px) {
+/* @media all and (min-width: 540px) { */
 
        #main{
         display:block;

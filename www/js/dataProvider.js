@@ -4,7 +4,6 @@ var eetNu = function(app){
 	var app = app;
 
 	self.execRequest = function(collection, callback) {
-		alert(collection);
 		$.ajax({
 			url: collection,
 			method: 'GET',
