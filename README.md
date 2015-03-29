@@ -20,7 +20,7 @@ In deze app moet het natuurlijk mogelijk zijn om restaurants te zoeken naar jouw
 | Jquery UI toepassen in een hybride applicatie. | :heavy_check_mark: | :heavy_check_mark: |
 | De app bevat navigatie modellen in de vorm van pages / tabs | :heavy_check_mark: | :heavy_check_mark: |
 | De app bevat navigatie modellen in de vorm van panels | :heavy_check_mark: | :heavy_check_mark: |
-| Er is ondersteuning om te kunnen navigeren via swipe. | :heavy_check_mark: | :x: |
+| Er is ondersteuning om te kunnen navigeren via swipe. | :heavy_check_mark: | :heavy_check_mark: |
 | De app heeft een andere layout op tablets dan op de phone | :heavy_check_mark: | :heavy_check_mark: |
 | Een duidelijke navigatiestructuur hebben (denk aan backbutton) | :heavy_check_mark: | :heavy_check_mark: |
 | Niet vastlopen bij het bijladen van data (denk aan loading dialog) | :heavy_check_mark: | :heavy_check_mark: |
